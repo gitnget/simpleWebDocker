@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Lookup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+
+    <main class="container my-4">
+      <div class="d-flex flex-column align-items-center">
+        <h4>Student's Attendance Chart</h4>
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <label for="stuid" class="form-label mb-0" style="min-width: 80px">Search ID:</label>
+          <input type="text" class="form-control" id="stuid" name="stuid" value="1234" placeholder="Scan or enter student ID" autofocus required />
+        </div>
+      </div>
+
+      <!-- Student info result -->
+      <div id="result" class="d-flex justify-content-center"></div>
+
+      <!-- Chart area -->
+      <div id="chart-container" style="height: 400px">
+        <canvas id="attendanceChart"></canvas>
+      </div>
+      <div id="summary" style="margin: 10px 0; font-weight: bold"></div>
+    </main>
+
+    <script>
+      const API_BASE = "https://fastapi-service-101554626321.asia-southeast1.run.app";
+      const studentid = document.getElementById("stuid");
+      const resultDiv = document.getElementById("result");
+      const chartDiv = document.getElementById("chart-container");
+      const summaryDiv = document.getElementById("summary");
+
+      studentid.addEventListener("keypress", async function (event) {
+        if (event.key === "Enter") {
+          const barcode = studentid.value.trim();
+          if (barcode) {
+            resultDiv.innerHTML = '<div class="text-muted">Looking up...</div>';
+            try {
+              const response = await fetch(`${API_BASE}/getstubystuid?stuid=${encodeURIComponent(barcode)}`);
+
+              if (!response.ok) throw new Error("Not found");
+              const data = await response.json();
+
+              // Card + Table display
+              let cardHTML = `
+                <div class="card shadow-sm mt-3" style="max-width: 600px; width: 100%;">
+                  <div class="card-header bg-primary text-white fw-bold">
+                    Student Information
+                  </div>
+                  <div class="card-body p-0">
+                    <table class="table table-bordered mb-0">
+                      <tbody>`;
+
+              for (const [key, value] of Object.entries(data)) {
+                cardHTML += `<tr><th style="width:150px;">${key}</th><td>${value}</td></tr>`;
+              }
+
+              cardHTML += `
+                      </tbody>
+                    </table>
+                  </div>
+                </div>`;
+
+              resultDiv.innerHTML = cardHTML;
+
+              // load the chart
+              chartDiv.style.display = "";
+              summaryDiv.style.display = "";
+              loadChart();
+            } catch (err) {
+              resultDiv.innerHTML = '<div class="text-danger">No record found.</div>';
+              chartDiv.style.display = "none";
+              summaryDiv.style.display = "none";
+            }
+            studentid.value = "";
+          }
+        }
+      });
+    </script>
+
+    <!-- Shared footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- ✅ Load Chart.js first -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="/js/attchart.js"></script>
+
+    <script src="/js/script.js"></script>
+    <script>
+      fetch("/header.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

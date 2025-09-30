@@ -1,0 +1,160 @@
+:root {
+  --cell: 13px; /* box size */
+  --gap: 3px; /* spacing */
+  --fg: #333;
+  --muted: #667085;
+  --bg: #fff;
+  /* Custom palette */
+  --absent: #e74c3c; /* red */
+  --late: #f1c40f; /* yellow */
+  --present: #2ecc71; /* green */
+  --default: #ebedf0; /* light grey */
+  --weekend: #9ea0a4; /* deeper grey for weekends */
+  --out: #ffffff; /* out-of-range boxes */
+  --out-border: #f0f1f3; /* subtle border for out-of-range */
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+.grid-container {
+  display: none; /* or flex */
+  gap: 8px;
+  margin: 0 auto; /* centers the container itself */
+  justify-content: center; /* centers items inside */
+  text-align: center; /* optional: centers inline text */
+}
+
+/* Base (desktop) */
+.grid-wrap {
+  width: 100%;
+  margin: 0 auto;
+  overflow: visible; /* show full content normally */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Small screens: make the wrapper horizontally scrollable */
+@media (max-width: 768px) {
+  .grid-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  /* left-align so scrolling behaves naturally */
+  .grid-container {
+    justify-content: flex-start;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+#resultsTable table {
+  max-width: 600px;
+  width: 100%; /* responsive */
+  margin: 0 auto; /* center */
+  table-layout: auto; /* adjust column widths to content */
+}
+
+.heatmap {
+  display: grid;
+  grid-template-columns: auto 1fr; /* labels + grid */
+  grid-template-rows: auto 1fr; /* months + days */
+  column-gap: 6px;
+  row-gap: 4px;
+}
+
+.months {
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--cell);
+  column-gap: var(--gap);
+  font-size: 11px;
+  color: var(--muted);
+  height: var(--cell);
+  align-items: end; /* sits at bottom of its row */
+}
+
+.day-labels {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-rows: repeat(7, var(--cell));
+  row-gap: var(--gap);
+  align-content: start;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.grid {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-rows: repeat(7, var(--cell));
+  gap: var(--gap);
+}
+
+.absent {
+  background: var(--absent);
+}
+.late {
+  background: var(--late);
+}
+.present {
+  background: var(--present);
+}
+.weekend {
+  background: var(--weekend) !important;
+}
+.out {
+  background: var(--out) !important;
+  box-shadow: inset 0 0 0 1px var(--out-border);
+}
+
+.tooltip {
+  position: fixed !important;
+  display: none;
+  background: #111;
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  z-index: 99999 !important;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  pointer-events: none; /* so it doesn’t block mouse */
+}
+
+.legend {
+  display: flex; /* keep swatches nicely inline */
+  gap: 0.5rem; /* spacing between items */
+  flex-wrap: wrap; /* wrap if screen is small */
+  margin-top: 1rem; /* push it down below the heatmap */
+}
+
+.legend .swatch {
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 2px;
+}
+
+.summary-box {
+  max-width: 600px; /* keeps it from stretching too wide on big screens */
+  margin: 1rem auto 0; /* centers it horizontally, adds spacing on top */
+  padding: 0.75rem 1rem;
+  text-align: left; /* ensures left alignment */
+  word-wrap: break-word; /* avoids text overflow */
+  background: #f9f9f9; /* light background for readability */
+  border-left: 4px solid #0d6efd; /* accent line, matches Bootstrap primary */
+  border-radius: 8px;
+  font-size: 0.95rem;
+  display: none;
+}

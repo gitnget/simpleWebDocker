@@ -1,0 +1,288 @@
+/* Make body take full height and use flexbox */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* always at least viewport height */
+}
+
+/* Main should expand to push footer down */
+main {
+  flex: 1;
+  padding: 5px;
+}
+
+.home-main {
+  min-height: 70vh; /* keep enough height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* align from top */
+  align-items: center; /* still center horizontally */
+  text-align: center;
+  margin-top: 40px; /* adjust margin as needed */
+}
+
+.tool-list {
+  list-style-position: outside; /* keep bullets outside */
+  margin: 20px 0;
+  text-align: left;
+}
+
+.tool-list li {
+  margin: 10px 0; /* vertical spacing between items */
+}
+
+/* ===============================
+   Logo section
+   =============================== */
+
+.logo a {
+  display: flex; /* makes img + text align horizontally */
+  align-items: center; /* vertically centers them */
+  text-decoration: none; /* removes underline */
+  color: inherit; /* keeps text color consistent */
+  gap: 8px; /* spacing between icon and text */
+}
+
+.logo img {
+  height: 40px; /* adjust as needed */
+  width: auto;
+}
+
+.logo span,
+.logo strong {
+  font-size: 30px; /* consistent font size */
+  padding: 1px 1px;
+  color: #fff;
+}
+
+/* ===============================
+   
+   =============================== */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: linear-gradient(120deg, #0033e7, #86eaa7);
+  padding: 0 20px; /* optional spacing */
+  height: 60px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px; /* space between menu items */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #f0c040;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #333;
+    flex-direction: column;
+    width: 200px;
+    display: none;
+  }
+
+  .nav-links li {
+    margin: 15px 0;
+    text-align: center;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+form label {
+  display: block; /* each label on its own line */
+  margin-bottom: 15px; /* space between rows */
+  font-weight: bold; /* optional, makes label text stand out */
+}
+
+form input,
+form select,
+form textarea {
+  display: block; /* stack under label */
+  margin-top: 5px; /* little space below label text */
+  width: 100%; /* make controls expand full width */
+  max-width: 400px; /* prevent them from being too wide */
+  padding: 8px;
+}
+
+/* a table wrapper of 700 width */
+.table700-wrapper {
+  max-width: 800px; /* make it wider than auto, but not full page */
+  margin: 0;
+}
+
+.table-details th {
+  background-color: #f4f4f4; /* light gray */
+  font-weight: bold;
+  width: 200px; /* optional fixed width for title col */
+}
+
+.table-details td {
+  background-color: #fff; /* white */
+}
+
+#chart-container {
+  height: 400px;
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 95%;
+}
+
+/* Student Card */
+.student-card-container {
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  min-height: 400px; /* or any height of your container */
+  position: relative;
+}
+
+.student-card {
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ffffff, #e6f0ff); /* Soft light color */
+  padding: 0; /* remove padding here so gradient is full */
+  margin: 30px auto;
+  display: none;
+  overflow: hidden; /* keeps corners rounded */
+}
+
+.card-header-strip {
+  background-color: #1441e1; /* Blue header strip */
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 8px 12px;
+}
+
+.card-content {
+  padding: 20px;
+  background: transparent; /* ✅ ensure gradient shows through */
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.student-photo {
+  width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.student-name-id {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.student-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: right;
+}
+
+.student-id {
+  font-size: 0.95em;
+  text-align: right;
+  color: #555;
+  margin-top: 4px;
+}
+
+.student-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1em;
+  color: #333;
+  margin-top: 10px;
+}
+
+.student-info-row div span {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: #1441e1;
+  color: #ddd;
+
+  /* Explicit control */
+  height: 40px; /* fixed footer height */
+  line-height: 40px; /* vertically center single-line text */
+  margin-top: 40px;
+
+  /* Reset Bootstrap interference */
+  padding: 0; /* remove extra padding */
+}
+
+footer a {
+  color: inherit; /* same color as footer text */
+  text-decoration: none; /* removes underline */
+}
+
+footer a:hover {
+  text-decoration: underline; /* optional: show underline on hover */
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+
+    <main>
+      <h2>AMIRUDIN Attendance - Last 52 Weeks</h2>
+      <div id="chart-container" style="height: 400px">
+        <canvas id="attendanceChart"></canvas>
+      </div>
+      <div id="summary" style="margin: 10px 0; font-weight: bold"></div>
+    </main>
+
+    <!-- ✅ Load Chart.js first -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="/js/attchart.js"></script>
+    <script>
+      loadChart();
+    </script>
+
+    <!-- Shared footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="/js/script.js"></script>
+    <script>
+      fetch("/header.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance Heatmap 2025 — GitHub Style</title>
+    <style>
+      :root {
+        --cell: 13px; /* box size */
+        --gap: 3px; /* spacing */
+        --fg: #333;
+        --muted: #667085;
+        --bg: #fff;
+        /* Custom palette */
+        --absent: #e74c3c; /* red */
+        --late: #f1c40f; /* yellow */
+        --present: #2ecc71; /* green */
+        --default: #ebedf0; /* light grey */
+        --weekend: #9ea0a4; /* deeper grey for weekends */
+        --out: #ffffff; /* out-of-range boxes */
+        --out-border: #f0f1f3; /* subtle border for out-of-range */
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+        color: var(--fg);
+        background: var(--bg);
+      }
+
+      h2 {
+        text-align: center;
+        margin: 0 0 16px;
+        font-weight: 600;
+      }
+
+      .container {
+        display: grid;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .heatmap {
+        display: grid;
+        grid-template-columns: auto 1fr; /* labels + grid */
+        grid-template-rows: auto 1fr; /* months + days */
+        column-gap: 6px;
+        row-gap: 4px;
+      }
+
+      .months {
+        grid-column: 2;
+        grid-row: 1;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: var(--cell);
+        column-gap: var(--gap);
+        font-size: 11px;
+        color: var(--muted);
+        height: var(--cell);
+        align-items: end; /* sits at bottom of its row */
+      }
+
+      .day-labels {
+        grid-column: 1;
+        grid-row: 2;
+        display: grid;
+        grid-template-rows: repeat(7, var(--cell));
+        row-gap: var(--gap);
+        align-content: start;
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .grid {
+        grid-column: 2;
+        grid-row: 2;
+        display: grid;
+        grid-template-rows: repeat(7, var(--cell));
+        gap: var(--gap);
+      }
+
+      .absent {
+        background: var(--absent);
+      }
+      .late {
+        background: var(--late);
+      }
+      .present {
+        background: var(--present);
+      }
+      .weekend {
+        background: var(--weekend) !important;
+      }
+      .out {
+        background: var(--out) !important;
+        box-shadow: inset 0 0 0 1px var(--out-border);
+      }
+
+      .tooltip {
+        position: fixed;
+        display: none;
+        background: #111;
+        color: #fff;
+        font-size: 12px;
+        padding: 6px 8px;
+        border-radius: 4px;
+        pointer-events: none;
+        z-index: 1000;
+        white-space: nowrap;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .legend {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: flex-end;
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      .legend .swatch {
+        width: var(--cell);
+        height: var(--cell);
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Attendance: Ahmad Faiz Bin Abdullah</h2>
+
+    <div class="container">
+      <div class="heatmap">
+        <div id="months" class="months"></div>
+        <div class="day-labels">
+          <div>Mon</div>
+          <div></div>
+          <div>Wed</div>
+          <div></div>
+          <div>Fri</div>
+          <div></div>
+          <div>Sun</div>
+        </div>
+        <div id="grid" class="grid"></div>
+      </div>
+      <div class="legend">
+        <span class="swatch present"></span> <span>Present</span> <span class="swatch late"></span> <span>Late</span>
+        <span class="swatch absent"></span><span>Absent</span> | <span class="swatch weekend"></span><span>Weekend</span>
+        <span class="swatch out"></span> <span>Out-of-range</span>
+      </div>
+    </div>
+
+    <div id="tooltip" class="tooltip"></div>
+
+    <script>
+      async function initCalendar() {
+        try {
+          const response = await fetch("daily1234.json");
+          const records = await response.json();
+
+          const attendance = Object.create(null);
+          for (const r of records) attendance[r.attendancedate] = r.status;
+
+          const pad = (n) => String(n).padStart(2, "0");
+          const ymd = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+          const monday = (d) => {
+            const x = new Date(d);
+            const day = (x.getDay() + 6) % 7;
+            x.setDate(x.getDate() - day);
+            x.setHours(0, 0, 0, 0);
+            return x;
+          };
+          const sunday = (d) => {
+            const x = new Date(d);
+            const day = (x.getDay() + 6) % 7;
+            x.setDate(x.getDate() + (6 - day));
+            x.setHours(0, 0, 0, 0);
+            return x;
+          };
+
+          const yearStart = new Date(2025, 0, 1);
+          const yearEnd = new Date(2025, 11, 31);
+          const gridStart = monday(yearStart);
+          const gridEnd = sunday(yearEnd);
+          const MS_DAY = 24 * 60 * 60 * 1000;
+          const totalDays = Math.round((gridEnd - gridStart) / MS_DAY) + 1;
+          const totalCols = Math.ceil(totalDays / 7);
+
+          // --- Month Labels ---
+          const months = document.getElementById("months");
+          months.style.gridTemplateColumns = `repeat(${totalCols}, var(--cell))`;
+
+          const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+          for (let m = 0; m < 12; m++) {
+            const first = new Date(2025, m, 1);
+            if (first < gridStart || first > gridEnd) continue;
+            const colStart = Math.floor((monday(first) - gridStart) / MS_DAY / 7) + 1;
+            const next = new Date(2025, m + 1, 1);
+            const colEnd = Math.floor((monday(next) - gridStart) / MS_DAY / 7) + 1;
+            const label = document.createElement("div");
+            label.textContent = monthNames[m];
+            label.style.gridColumn = `${colStart} / ${colEnd}`;
+            months.appendChild(label);
+          }
+
+          // --- Grid ---
+          const grid = document.getElementById("grid");
+          grid.style.gridTemplateColumns = `repeat(${totalCols}, var(--cell))`;
+
+          const tooltip = document.getElementById("tooltip");
+
+          for (let i = 0; i < totalDays; i++) {
+            const d = new Date(gridStart);
+            d.setDate(d.getDate() + i);
+            const inRange = d >= yearStart && d <= yearEnd;
+            const rowIdx = ((d.getDay() + 6) % 7) + 1;
+            const colIdx = Math.floor(i / 7) + 1;
+
+            const cell = document.createElement("div");
+            cell.className = "day";
+            cell.style.gridRow = rowIdx;
+            cell.style.gridColumn = colIdx;
+
+            const dateStr = ymd(d);
+            const status = attendance[dateStr];
+
+            if (!inRange) cell.classList.add("out");
+            else if (d.getDay() === 0 || d.getDay() === 6) cell.classList.add("weekend");
+            else if (status === "PRESENT") cell.classList.add("present");
+            else if (status === "LATE") cell.classList.add("late");
+            else if (status === "ABSENT") cell.classList.add("absent");
+
+            // Tooltip
+            const pretty = !inRange ? "Out of range" : status || "No Data";
+            cell.addEventListener("mouseenter", () => {
+              tooltip.style.display = "block";
+              tooltip.textContent = `${dateStr}: ${pretty}`;
+            });
+            cell.addEventListener("mousemove", (e) => {
+              tooltip.style.left = e.pageX + 12 + "px";
+              tooltip.style.top = e.pageY + 12 + "px";
+            });
+            cell.addEventListener("mouseleave", () => (tooltip.style.display = "none"));
+
+            grid.appendChild(cell);
+          }
+        } catch (err) {
+          console.error("Error loading JSON:", err);
+        }
+      }
+      initCalendar();
+    </script>
+  </body>
+</html>

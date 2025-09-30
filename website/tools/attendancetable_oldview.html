@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Attendance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+
+    <main class="container my-4">
+      <div class="d-flex flex-column align-items-center">
+        <h4>Student's Attendance Table</h4>
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <label for="stuid" class="form-label mb-0" style="min-width: 80px">Search ID:</label>
+          <input type="text" class="form-control" id="stuid" name="stuid" placeholder="Scan or enter student ID" autofocus required />
+          <button id="searchBtn" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+
+      <div id="error" class="error" style="color: red"></div>
+
+      <!-- Student info result -->
+      <div id="studentInfo" class="d-flex justify-content-center">
+        <div class="student-card" id="studentCard">
+          <div class="card-header-strip" id="schoolname">Sekolah Menengah Air Itam</div>
+
+          <div class="card-content">
+            <div class="card-top">
+              <div class="student-photo"></div>
+              <div class="student-name-id">
+                <div class="student-name" id="studentname"></div>
+                <div class="student-id" id="studentid"></div>
+              </div>
+            </div>
+
+            <div class="student-info-row">
+              <div id="curyear"></div>
+              <div id="curform"></div>
+              <div id="curclass"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart area -->
+      <div id="chart-container">
+        <canvas id="attendanceChart"></canvas>
+      </div>
+      <div id="summary"></div>
+
+      <!-- Data Table -->
+      <div id="resultsTable"></div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/attchart.js"></script>
+    <script src="/js/attendancetable.js"></script>
+    <script src="/js/script.js"></script>
+
+    <script>
+      // Header include
+      fetch("/header.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+
+      // Elements
+      const API_BASE = "https://fastapi-service-101554626321.asia-southeast1.run.app";
+      const studentidInput = document.getElementById("stuid");
+      const searchBtn = document.getElementById("searchBtn");
+      const studentCard = document.getElementById("studentCard");
+      const chartDiv = document.getElementById("chart-container");
+      const summaryDiv = document.getElementById("summary");
+
+      async function fetchStudent() {
+        const barcode = studentidInput.value.trim();
+        if (!barcode) return;
+
+        // Hide UI elements while loading
+        studentCard.style.display = "none";
+        chartDiv.style.display = "none";
+        summaryDiv.style.display = "none";
+
+        try {
+          const response = await fetch(`${API_BASE}/getstubystuid?stuid=${encodeURIComponent(barcode)}`);
+          if (!response.ok) throw new Error("Student not found");
+          const data = await response.json();
+
+          // Fill student card
+          document.getElementById("studentname").textContent = data.name || "N/A";
+          document.getElementById("studentid").textContent = `ID: ${data.stuid || "N/A"}`;
+          document.getElementById("curyear").innerHTML = `<span>Year:</span> ${data.year || "N/A"}`;
+          document.getElementById("curform").innerHTML = `<span>Form:</span> ${data.form || "N/A"}`;
+          document.getElementById("curclass").innerHTML = `<span>Class:</span> ${data.class || "N/A"}`;
+
+          if (data.photoURL) {
+            document.querySelector(".student-photo").style.backgroundImage = `url(${data.photoURL})`;
+          } else {
+            document.querySelector(".student-photo").style.backgroundImage = "none";
+          }
+
+          // Show UI elements
+          studentCard.style.display = "block";
+          chartDiv.style.display = "block";
+          summaryDiv.style.display = "block";
+
+          // Call your chart function
+          if (typeof loadChart === "function") loadChart();
+        } catch (err) {
+          alert(err.message);
+          studentCard.style.display = "none";
+          chartDiv.style.display = "none";
+          summaryDiv.style.display = "none";
+          console.error(err);
+        }
+
+        studentidInput.value = "";
+      }
+
+      // Trigger fetch on Enter key
+      studentidInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") fetchStudent();
+      });
+
+      // Trigger fetch on Search button click
+      searchBtn.addEventListener("click", fetchStudent);
+    </script>
+  </body>
+</html>

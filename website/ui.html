@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Table with Progress Bars</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
+    />
+    <style>
+      body {
+  font-family: Arial, sans-serif;
+  margin: 10px;
+  padding: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#filters-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#filters-container label {
+  flex: 1 1 120px;
+  min-width: 120px;
+  font-size: 1rem;
+}
+
+#filters-container select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 1rem;
+}
+
+#applyFilterBtn {
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  flex: 1 1 100px;
+  min-width: 100px;
+}
+
+/* Make table container fluid */
+#attendanceTable_wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Progress bar responsive */
+.progress-container {
+  width: 100%;
+  max-width: 100px;
+  height: 16px;
+  position: relative;
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.2rem;
+  }
+  #filters-container label {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+  #applyFilterBtn {
+    flex: 1 1 100%;
+  }
+  .progress-container {
+    max-width: 80px;
+    height: 14px;
+  }
+  .progress-text {
+    font-size: 10px;
+  }
+  table.dataTable th, table.dataTable td {
+    font-size: 12px;
+    padding: 6px 4px;
+  }
+}
+
+      .progress-container {
+        background-color: #ddd;
+        border-radius: 4px;
+        width: 100px;
+        height: 16px;
+        position: relative;
+      }
+      .progress-bar {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+      .present {
+        background-color: #4caf50; /* green */
+      }
+      .late {
+        background-color: #ffeb3b; /* yellow */
+      }
+      .absent {
+        background-color: #f44336; /* red */
+      }
+      /* Center numeric value inside progress bar */
+      .progress-text {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 0;
+        left: 0;
+        font-size: 12px;
+        font-weight: bold;
+        color: #000;
+        line-height: 16px;
+        user-select: none;
+      }
+    </style>
+  </head>
+<body>
+  <h2 style="text-align: center">Weekly Attendance (2024-08-05)</h2>
+
+  <div id="filters-container">
+    <label>
+      Form:
+      <select id="formFilter">
+        <option value="">All</option>
+      </select>
+    </label>
+
+    <label>
+      Class:
+      <select id="classFilter" disabled>
+        <option value="">All</option>
+      </select>
+    </label>
+
+    <button id="applyFilterBtn">Filter</button>
+  </div>
+
+  <table
+    id="attendanceTable"
+    class="display"
+    style="width: 60%; margin: auto"
+  >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>PRESENT</th>
+        <th>LATE</th>
+        <th>ABSENT</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(function () {
+  const MAX_UNITS = 5;
+  let allData = [];
+  let dataTable;
+
+  function renderProgressBar(value, colorClass) {
+    const percentage = (value / MAX_UNITS) * 100;
+    return `
+      <div class="progress-container">
+        <div class="progress-bar ${colorClass}" style="width: ${percentage}%;"></div>
+        <div class="progress-text">${value}</div>
+      </div>
+    `;
+  }
+
+  let formToClasses = {};
+
+  function populateFilters(data) {
+    formToClasses = {};
+    data.forEach(d => {
+      if (!formToClasses[d.Form]) formToClasses[d.Form] = new Set();
+      formToClasses[d.Form].add(d.Class);
+    });
+
+    const formSelect = $("#formFilter");
+    formSelect.empty().append('<option value="">All</option>');
+    Object.keys(formToClasses).sort().forEach(form => {
+      formSelect.append(`<option value="${form}">${form}</option>`);
+    });
+
+    const classSelect = $("#classFilter");
+    classSelect.empty().append('<option value="">All</option>').prop('disabled', true);
+  }
+
+  $("#formFilter").on('change', function () {
+    const selectedForm = $(this).val();
+    const classSelect = $("#classFilter");
+    classSelect.empty();
+
+    if (!selectedForm) {
+      classSelect.append('<option value="">All</option>');
+      classSelect.prop('disabled', true);
+    } else {
+      classSelect.prop('disabled', false);
+      classSelect.append('<option value="">All</option>');
+      [...formToClasses[selectedForm]].sort().forEach(cls => {
+        classSelect.append(`<option value="${cls}">${cls}</option>`);
+      });
+    }
+  });
+
+  function filterData() {
+    const selectedForm = $("#formFilter").val();
+    const selectedClass = $("#classFilter").val();
+
+    return allData.filter(d => {
+      return (selectedForm === "" || d.Form === selectedForm) &&
+             (selectedClass === "" || d.Class === selectedClass);
+    });
+  }
+
+  function renderTable(data) {
+    if (dataTable) {
+      dataTable.destroy();
+    }
+    const tbody = $("#attendanceTable tbody");
+    tbody.empty();
+
+    data.forEach(student => {
+      tbody.append(`
+        <tr>
+          <td>${student.Name}</td>
+          <td>${renderProgressBar(student.PRESENT, "present")}</td>
+          <td>${renderProgressBar(student.LATE, "late")}</td>
+          <td>${renderProgressBar(student.ABSENT, "absent")}</td>
+        </tr>
+      `);
+    });
+
+    dataTable = $("#attendanceTable").DataTable({
+      order: [1, "desc"],
+      columnDefs: [{ targets: [1, 2, 3], orderable: true }],
+      pageLength: 15
+    });
+  }
+
+  fetch('students.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Failed to load students.json');
+      return response.json();
+    })
+    .then(data => {
+      allData = data;
+      populateFilters(allData);
+      renderTable(allData);
+
+      $("#applyFilterBtn").off('click').on('click', () => {
+        const filteredData = filterData();
+        renderTable(filteredData);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading JSON:', error);
+      $("#attendanceTable tbody").append('<tr><td colspan="4">Failed to load data</td></tr>');
+    });
+});
+
+  </script>
+</body>
+
+
+</html>

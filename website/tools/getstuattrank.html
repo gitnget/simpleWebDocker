@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rank Student</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      .months a {
+        margin: 0 5px;
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        padding: 3px 6px;
+        border-radius: 4px;
+        transition: background 0.2s;
+      }
+      .months a:hover {
+        background: #e6f0ff;
+      }
+      .months a.active {
+        background: #007bff;
+        color: #fff;
+      }
+      table {
+        margin: 10px auto; /* centers horizontally and adds vertical space */
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .table-container {
+        padding: 0 40px; /* left/right padding */
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px 12px;
+        text-align: center;
+      }
+      th {
+        background: #f2f2f2;
+        cursor: pointer;
+        user-select: none;
+      }
+      th.sort-asc::after {
+        content: " ▲";
+      }
+      th.sort-desc::after {
+        content: " ▼";
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+    <main>
+      <br />
+      <div class="table-container">
+        <h3>Attendance Report 2025</h3>
+        <br />
+        <div class="months" id="monthLinks">
+          <!-- Links for each month -->
+          <a href="#" data-month="1">Jan</a>
+          <a href="#" data-month="2">Feb</a>
+          <a href="#" data-month="3">Mar</a>
+          <a href="#" data-month="4">Apr</a>
+          <a href="#" data-month="5">May</a>
+          <a href="#" data-month="6">Jun</a>
+          <a href="#" data-month="7">Jul</a>
+          <a href="#" data-month="8">Aug</a>
+          <a href="#" data-month="9">Sep</a>
+          <a href="#" data-month="10">Oct</a>
+          <a href="#" data-month="11">Nov</a>
+          <a href="#" data-month="12">Dec</a>
+        </div>
+
+        <table id="reportTable"></table>
+      </div>
+    </main>
+    <script>
+      const HEADER_LABELS = {
+        student_name: "Name",
+        stuID: "Student ID",
+        edu_stuid: "Edu ID",
+        monthly_goal: "Goal",
+        form: "Form",
+        class: "Class",
+        att_pct: "Att %",
+        absent_pct: "Abs %",
+        // …add any other fields you expect
+      };
+
+      const API_BASE = "https://fastapi-service-101554626321.asia-southeast1.run.app/getstuattrank";
+      const table = document.getElementById("reportTable");
+      const monthLinks = document.getElementById("monthLinks");
+
+      // Highlight clicked month
+      monthLinks.addEventListener("click", (e) => {
+        const link = e.target.closest("a[data-month]");
+        if (!link) return;
+        e.preventDefault();
+        highlightMonth(link);
+        loadReport(parseInt(link.dataset.month, 10));
+      });
+
+      function highlightMonth(link) {
+        document.querySelectorAll(".months a").forEach((a) => a.classList.remove("active"));
+        link.classList.add("active");
+      }
+
+      async function loadReport(month) {
+        const year = 2025;
+        const url = `${API_BASE}?year=${year}&month=${month}`;
+        table.innerHTML = "<tr><td>Loading...</td></tr>";
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (!Array.isArray(data) || data.length === 0) {
+            table.innerHTML = "<tr><td>No data found</td></tr>";
+            return;
+          }
+
+          const headers = Object.keys(data[0]);
+          let html = "<thead><tr>";
+          headers.forEach((h) => {
+            const label = HEADER_LABELS[h] || h; // fallback to key if not mapped
+            html += `<th>${label}</th>`;
+          });
+          html += "</tr></thead><tbody>";
+
+          data.forEach((row) => {
+            html += "<tr>";
+            headers.forEach((h) => (html += `<td>${row[h]}</td>`));
+            html += "</tr>";
+          });
+          html += "</tbody>";
+          table.innerHTML = html;
+
+          makeTableSortable(reportTable);
+        } catch (err) {
+          table.innerHTML = `<tr><td>Error: ${err.message}</td></tr>`;
+        }
+      }
+
+      // Load current month by default and highlight it
+      const currentMonth = new Date().getMonth() + 1;
+      const defaultLink = document.querySelector(`.months a[data-month="${currentMonth}"]`);
+      if (defaultLink) {
+        highlightMonth(defaultLink);
+      }
+      loadReport(currentMonth);
+    </script>
+
+    <!-- Shared footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="/js/script.js"></script>
+    <script>
+      fetch("/header.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

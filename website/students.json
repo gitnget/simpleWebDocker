@@ -1,0 +1,62 @@
+[
+  {
+    "edu_stuid": "1234",
+    "name": "Ahmad Faiz Bin Abdullah",
+    "form": "Tingkatan1",
+    "class": "1A",
+    "year": 2025,
+    "status": "PRESENT",
+    "attendancedate": "2025-08-20",
+    "createdate": "2025-08-24 07:14:37"
+  },
+  {
+    "edu_stuid": "1234",
+    "name": "Ahmad Faiz Bin Abdullah",
+    "form": "Tingkatan1",
+    "class": "1A",
+    "year": 2025,
+    "status": "PRESENT",
+    "attendancedate": "2025-08-23",
+    "createdate": "2025-08-24 06:49:55"
+  },
+  {
+    "edu_stuid": "1234",
+    "name": "Ahmad Faiz Bin Abdullah",
+    "form": "Tingkatan1",
+    "class": "1A",
+    "year": 2025,
+    "status": "PRESENT",
+    "attendancedate": "2025-08-24",
+    "createdate": "2025-08-24 06:49:30"
+  },
+  {
+    "edu_stuid": "1234",
+    "name": "Ahmad Faiz Bin Abdullah",
+    "form": "Tingkatan1",
+    "class": "1A",
+    "year": 2025,
+    "status": "PRESENT",
+    "attendancedate": "2025-08-20",
+    "createdate": "2025-08-24 07:14:37"
+  },
+  {
+    "edu_stuid": "1234",
+    "name": "Ahmad Faiz Bin Abdullah",
+    "form": "Tingkatan1",
+    "class": "1A",
+    "year": 2025,
+    "status": "PRESENT",
+    "attendancedate": "2025-08-23",
+    "createdate": "2025-08-24 06:49:55"
+  },
+  {
+    "edu_stuid": "1234",
+    "name": "Ahmad Faiz Bin Abdullah",
+    "form": "Tingkatan1",
+    "class": "1A",
+    "year": 2025,
+    "status": "PRESENT",
+    "attendancedate": "2025-08-24",
+    "createdate": "2025-08-24 06:49:30"
+  }
+]

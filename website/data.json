@@ -1,0 +1,812 @@
+[
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Zulkifli Bin Ali",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Kumar Singh",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Ravi Das",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Deepa Kumar",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Faiz Bin Ali",
+    "PRESENT": 2,
+    "LATE": 2,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Lim Liang",
+    "PRESENT": 2,
+    "LATE": 2,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Aminah Binti Hassan",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Farid Bin Ismail",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Amira Bin Ali",
+    "PRESENT": 2,
+    "LATE": 3,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1A",
+    "Name": "Siti Bin Ismail",
+    "PRESENT": 3,
+    "LATE": 2,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Liyana Binti Hassan",
+    "PRESENT": 3,
+    "LATE": 2,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Hafiz Binti Ahmad",
+    "PRESENT": 3,
+    "LATE": 0,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Tan Ting",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Lim Jie",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Azman Binti Ahmad",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Siti Bin Ali",
+    "PRESENT": 3,
+    "LATE": 1,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Zulkifli Bin Abdullah",
+    "PRESENT": 3,
+    "LATE": 0,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Farid Bin Ali",
+    "PRESENT": 2,
+    "LATE": 3,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Lim Jun",
+    "PRESENT": 3,
+    "LATE": 0,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1B",
+    "Name": "Zulkifli Bin Ismail",
+    "PRESENT": 2,
+    "LATE": 2,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Wong Jun",
+    "PRESENT": 2,
+    "LATE": 1,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Ravi Singh",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Deepa Kumar",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Nurul Binti Hassan",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Amira Binti Ahmad",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Lim Jie",
+    "PRESENT": 2,
+    "LATE": 1,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Farid Binti Ahmad",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Ravi Nair",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Farid Bin Abdullah",
+    "PRESENT": 2,
+    "LATE": 1,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan1",
+    "Class": "1C",
+    "Name": "Lee Hui",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Sangeeta Singh",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Amira Binti Hassan",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Liyana Bin Ismail",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Azman Binti Hassan",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Azman Binti Ahmad",
+    "PRESENT": 2,
+    "LATE": 2,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Tan Lin",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Ravi Raj",
+    "PRESENT": 3,
+    "LATE": 0,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Azman Bin Ali",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Nurul Bin Abdullah",
+    "PRESENT": 3,
+    "LATE": 0,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2A",
+    "Name": "Aminah Binti Ahmad",
+    "PRESENT": 2,
+    "LATE": 1,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Chong Mei",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Liyana Bin Ali",
+    "PRESENT": 3,
+    "LATE": 1,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Sangeeta Nair",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Farid Binti Ahmad",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Nurul Bin Ismail",
+    "PRESENT": 2,
+    "LATE": 1,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Wong Hui",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Raj Raj",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Wong Mei",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Hafiz Binti Hassan",
+    "PRESENT": 2,
+    "LATE": 3,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2B",
+    "Name": "Nurul Bin Abdullah",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Sangeeta Singh",
+    "PRESENT": 2,
+    "LATE": 3,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Liyana Binti Hassan",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Tan Wei",
+    "PRESENT": 3,
+    "LATE": 2,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Tan Liang",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Deepa Singh",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Nurul Binti Hassan",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Lee Fen",
+    "PRESENT": 3,
+    "LATE": 0,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Arjun Nair",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Liyana Bin Abdullah",
+    "PRESENT": 2,
+    "LATE": 2,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan2",
+    "Class": "2C",
+    "Name": "Aminah Binti Ahmad",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Hafiz Binti Ahmad",
+    "PRESENT": 2,
+    "LATE": 2,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Tan Liang",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Chong Mei",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Liyana Bin Ali",
+    "PRESENT": 3,
+    "LATE": 0,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Deepa Nair",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Azman Binti Ahmad",
+    "PRESENT": 3,
+    "LATE": 1,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Zulkifli Bin Abdullah",
+    "PRESENT": 2,
+    "LATE": 3,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Aminah Bin Abdullah",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Zulkifli Binti Hassan",
+    "PRESENT": 3,
+    "LATE": 2,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3A",
+    "Name": "Hafiz Bin Abdullah",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Liyana Binti Hassan",
+    "PRESENT": 3,
+    "LATE": 2,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Nisha Singh",
+    "PRESENT": 3,
+    "LATE": 1,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Faiz Bin Ali",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Deepa Kumar",
+    "PRESENT": 2,
+    "LATE": 3,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Lim Liang",
+    "PRESENT": 2,
+    "LATE": 3,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Kumar Kumar",
+    "PRESENT": 3,
+    "LATE": 1,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Arjun Singh",
+    "PRESENT": 2,
+    "LATE": 1,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Siti Bin Abdullah",
+    "PRESENT": 2,
+    "LATE": 1,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Lee Xiao",
+    "PRESENT": 3,
+    "LATE": 2,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3B",
+    "Name": "Tan Fen",
+    "PRESENT": 3,
+    "LATE": 2,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Amira Binti Hassan",
+    "PRESENT": 3,
+    "LATE": 2,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Amira Bin Ismail",
+    "PRESENT": 2,
+    "LATE": 2,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Farid Bin Abdullah",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Lim Wei",
+    "PRESENT": 3,
+    "LATE": 1,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Farid Bin Ismail",
+    "PRESENT": 4,
+    "LATE": 0,
+    "ABSENT": 1
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Vijay Raj",
+    "PRESENT": 4,
+    "LATE": 1,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Hafiz Bin Abdullah",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Chong Xiao",
+    "PRESENT": 2,
+    "LATE": 1,
+    "ABSENT": 2
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Tan Fen",
+    "PRESENT": 5,
+    "LATE": 0,
+    "ABSENT": 0
+  },
+  {
+    "Week Start": "2025-08-12",
+    "Form": "Tingkatan3",
+    "Class": "3C",
+    "Name": "Aminah Binti Ahmad",
+    "PRESENT": 2,
+    "LATE": 0,
+    "ABSENT": 3
+  }
+]
