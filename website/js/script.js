@@ -1,60 +1,127 @@
-/* Lightweight sorting logic */
-function makeTableSortable(table) {
-  const headers = table.querySelectorAll("th");
-  headers.forEach((header, index) => {
-    header.style.cursor = "pointer";
-    header.addEventListener("click", () => {
-      const rows = Array.from(table.querySelectorAll("tbody tr"));
-      const isAsc = header.classList.toggle("asc");
+console.log("script.js loaded");
 
-      rows.sort((a, b) => {
-        const cellA = a.children[index].innerText.trim();
-        const cellB = b.children[index].innerText.trim();
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
 
-        // Try to parse numbers, else compare as strings
-        const valA = isNaN(cellA) ? cellA.toLowerCase() : parseFloat(cellA);
-        const valB = isNaN(cellB) ? cellB.toLowerCase() : parseFloat(cellB);
+  /* ---------------- Logout helper ---------------- */
+  function attachLogoutHandler() {
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (!logoutBtn) return;
+    console.log("logging out");
+    logoutBtn.addEventListener("click", function (ev) {
+      ev.preventDefault();
 
-        if (valA < valB) return isAsc ? -1 : 1;
-        if (valA > valB) return isAsc ? 1 : -1;
-        return 0;
-      });
+      // 🔑 Clear client-side tokens
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+      localStorage.removeItem("username");
+      sessionStorage.removeItem("username");
 
-      // Re-append sorted rows
-      rows.forEach(row => table.querySelector("tbody").appendChild(row));
+      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+      // 🔑 Tell server to logout (optional if JWT is stateless)
+      fetch("/api/logout", { method: "POST", credentials: "include" })
+        .then(() => (window.location.href = "/login.html"))
+        .catch(() => (window.location.href = "/login.html"));
     });
-  });
-}
+  }
 
-function initMenu() {
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("nav-links");
-  if (hamburger && navLinks) {
-    hamburger.addEventListener("click", () => {
+  /* ---------------- Table sorting ---------------- */
+  function makeTableSortable(table) {
+    const headers = table.querySelectorAll("th");
+    headers.forEach((header, index) => {
+      header.style.cursor = "pointer";
+      header.addEventListener("click", () => {
+        const isAsc = header.classList.toggle("asc");
+        const rows = Array.from(table.querySelectorAll("tbody tr"));
+        rows.sort((a, b) => {
+          const cellA = a.children[index].innerText.trim();
+          const cellB = b.children[index].innerText.trim();
+          const numA = parseFloat(cellA.replace(/[, ]+/g, ""));
+          const numB = parseFloat(cellB.replace(/[, ]+/g, ""));
+          const aIsNum = !isNaN(numA);
+          const bIsNum = !isNaN(numB);
+          if (aIsNum && bIsNum) {
+            return isAsc ? numA - numB : numB - numA;
+          } else {
+            return isAsc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+          }
+        });
+        const tbody = table.querySelector("tbody");
+        rows.forEach((row) => tbody.appendChild(row));
+      });
+    });
+  }
+  window.makeTableSortable = makeTableSortable;
+
+  /* ---------------- Mobile hamburger ---------------- */
+  function initMenu() {
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+    if (!hamburger || !navLinks) return;
+    const newHamburger = hamburger.cloneNode(true);
+    hamburger.parentNode.replaceChild(newHamburger, hamburger);
+    newHamburger.addEventListener("click", function (ev) {
+      ev.preventDefault();
       navLinks.classList.toggle("active");
     });
   }
-}
 
-function loadIncludes() {
-  // Load header
-  fetch("../header.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("header-placeholder").innerHTML = data;
-      initMenu(); // activate hamburger after header loads
+  /* ---------------- Dropdown + User menu toggles ---------------- */
+  function attachDropdownToggles() {
+    const toggles = document.querySelectorAll(".dropdown, .user-icon");
+    if (!toggles.length) return;
+
+    function closeAll(exceptEl) {
+      toggles.forEach((t) => {
+        if (t !== exceptEl) t.classList.remove("open");
+      });
+    }
+
+    toggles.forEach((el) => {
+      el.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const wasOpen = el.classList.contains("open");
+        closeAll(el);
+        if (!wasOpen) {
+          el.classList.add("open");
+        }
+      });
+
+      // Prevent clicks inside menu from closing
+      const innerMenu = el.querySelector(".dropdown-menu, .user-menu");
+      if (innerMenu) {
+        innerMenu.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+        });
+      }
     });
 
-  // Load footer
-  fetch("../footer.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("footer-placeholder").innerHTML = data;
+    // Close when clicking outside
+    document.addEventListener("click", () => {
+      toggles.forEach((t) => t.classList.remove("open"));
     });
-}
 
-// Run once page is ready
-// document.addEventListener("DOMContentLoaded", loadIncludes); <== when only one function needed to load at DOMContentLoaded
+    // Close on Esc
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape") {
+        toggles.forEach((t) => t.classList.remove("open"));
+      }
+    });
+  }
 
-// Run once page is ready
-document.addEventListener("DOMContentLoaded", loadIncludes);
+  /* Display username once header is present */
+  function showUsername() {
+    const username = localStorage.getItem("username");
+    if (username) {
+      const userInfo = document.getElementById("user-info-name");
+      if (userInfo) userInfo.innerText = `Welcome, ${username}`;
+    }
+  }
+
+  /* === Run initializations after DOM ready === */
+  initMenu();
+  attachDropdownToggles();
+  attachLogoutHandler();
+  showUsername();
+});

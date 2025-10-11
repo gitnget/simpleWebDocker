@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Rank Student</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/auth.js"></script>
     <style>
       .months a {
         margin: 0 5px;
@@ -50,7 +51,8 @@
     </style>
   </head>
   <body>
-    <div id="header-placeholder"></div>
+    <!--#include virtual="/header.html" -->
+
     <main>
       <br />
       <div class="table-container">
@@ -152,15 +154,8 @@
     </script>
 
     <!-- Shared footer -->
-    <div id="footer-placeholder"></div>
+    <!--#include virtual="/footer.html" -->
 
     <script src="/js/script.js"></script>
-    <script>
-      fetch("/header.html")
-        .then((res) => res.text())
-        .then((data) => {
-          document.getElementById("header-placeholder").innerHTML = data;
-        });
-    </script>
   </body>
 </html>
