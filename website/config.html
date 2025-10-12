@@ -3,19 +3,236 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Under Construction</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title>Configuration</title>
+
     <script src="/js/auth.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .tab-content {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+        border: 1px solid #dee2e6;
+        border-top: none;
+      }
+      .nav-tabs .nav-link.active {
+        background-color: #0d6efd;
+        color: white !important;
+        font-weight: 500;
+      }
+      .nav-tabs .nav-link {
+        color: #0d6efd;
+        font-weight: 500;
+      }
+      .form-label {
+        font-weight: 500;
+      }
+      .save-btn {
+        margin-top: 1.5rem;
+      }
+
+      /* Make the second tab (Feature Toggles) greyish */
+      #school-tab.nav-link,
+      #subscription-tab.nav-link,
+      #system-tab.nav-link {
+        background-color: #e9ecef; /* light grey default */
+        color: #495057; /* dark grey text */
+      }
+
+      /* When active, slightly darker grey */
+      #school-tab.nav-link.active,
+      #subscription-tab.nav-link.active,
+      #system-tab.nav-link.active {
+        background-color: #adb5bd !important; /* medium grey active state */
+        color: #fff !important;
+        font-weight: 500;
+      }
+
+      /* Add more clearance for read-only tabs */
+      #school .row,
+      #subscription .row,
+      #system .row {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+      }
+    </style>
   </head>
   <body>
     <!-- Shared header -->
     <!--#include virtual="/header.html" -->
 
     <main>
-      <div class="construction-container">
-        <img src="images/under_construct.png" alt="Under Construction" />
-        <h2>Config Page Under Construction</h2>
-        <p>We’re working hard to bring this feature to you soon.</p>
+      <div class="container mt-5 mb-5">
+        <h3 class="mb-4 fw-bold">MySchool Configuration</h3>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="configTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="system-tab" data-bs-toggle="tab" data-bs-target="#system" type="button" role="tab">
+              System Config
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="school-tab" data-bs-toggle="tab" data-bs-target="#school" type="button" role="tab">School Info</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="subscription-tab" data-bs-toggle="tab" data-bs-target="#subscription" type="button" role="tab">
+              Subscription
+            </button>
+          </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="configTabsContent">
+          <!-- System Config -->
+          <div class="tab-pane fade show active" id="system" role="tabpanel">
+            <form class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Academic Year Start</label>
+                <input type="date" class="form-control" value="2025-01-01" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Academic Year End</label>
+                <input type="date" class="form-control" value="2025-12-31" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Default Language</label>
+                <select class="form-select">
+                  <option>English (EN)</option>
+                  <option>Malay (MS)</option>
+                  <option>Chinese (ZH)</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Time Format</label>
+                <select class="form-select">
+                  <option>24-hour</option>
+                  <option>12-hour</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Late Attendance Time</label>
+                <input type="time" class="form-control" value="08:00" />
+                <small class="text-muted">Students scanning after this time will be marked as late.</small>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Backup Frequency</label>
+                <select class="form-select">
+                  <option>Daily</option>
+                  <option>Weekly</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Students Attendance Data Retention</label>
+                <input type="text" class="form-control" value="5 Years" readonly />
+              </div>
+            </form>
+          </div>
+
+          <!-- School Info (Read-only) -->
+          <div class="tab-pane fade" id="school" role="tabpanel">
+            <div class="alert alert-info readonly-note">
+              <strong>Note:</strong> This information is managed by system support. Please contact
+              <a href="mailto:myschool.support@apyc.my">myschool.support@apyc.my</a> for updates.
+            </div>
+
+            <div class="row g-4">
+              <!-- School Details Card -->
+              <div class="col-12">
+                <div class="card shadow-sm border-0">
+                  <div class="card-header bg-light text-primary fw-bold">School Details</div>
+                  <div class="card-body">
+                    <form class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label">School Name</label>
+                        <input type="text" class="form-control" value="Maple Grove High School" readonly />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">School Code</label>
+                        <input type="text" class="form-control" value="PEA1094" readonly />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">School Type</label>
+                        <input type="text" class="form-control" value="Public" readonly />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Timezone</label>
+                        <input type="text" class="form-control" value="GMT+8 (Kuala Lumpur)" readonly />
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" value="123 Learning Ave, Penang" readonly />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- School Contact Card -->
+              <div class="col-12">
+                <div class="card shadow-sm border-0">
+                  <div class="card-header bg-light text-primary fw-bold">School Contact</div>
+                  <div class="card-body">
+                    <form class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Primary Contact</label>
+                        <input type="text" class="form-control" value="Mr. Tan Wei Ming" readonly />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Designation</label>
+                        <input type="text" class="form-control" value="School Administrator" readonly />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" value="admin@maplegrove.edu.my" readonly />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Phone</label>
+                        <input type="text" class="form-control" value="+60 12 345 6789" readonly />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subscription (Read-only) -->
+          <div class="tab-pane fade" id="subscription" role="tabpanel">
+            <div class="alert alert-info readonly-note">
+              <strong>Note:</strong> Subscription details are managed by support. For plan changes or renewal, contact
+              <a href="mailto:myschool.support@apyc.my">myschool.support@apyc.my</a> .
+            </div>
+            <form class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Subscription Plan</label>
+                <input type="text" class="form-control" value="Standard Plan – 800 Students, 5 Super Users" readonly />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Start Date</label>
+                <input type="text" class="form-control" value="01 Jan 2025" readonly />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">End Date</label>
+                <input type="text" class="form-control" value="31 Dec 2025" readonly />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">APYC Billing Contact</label>
+                <input type="text" class="form-control" value="myschool.support@apyc.my" readonly />
+              </div>
+              <!--
+              <div class="col-md-6">
+                <label class="form-label">Auto Renewal</label>
+                <input type="text" class="form-control" value="Enabled" readonly />
+              </div>
+              -->
+            </form>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -23,5 +240,20 @@
     <!--#include virtual="/footer.html" -->
 
     <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // IDs of tabs that should be read-only
+        const readOnlyTabs = ["system", "subscription", "school"];
+
+        readOnlyTabs.forEach((tabId) => {
+          const tab = document.getElementById(tabId);
+          if (!tab) return; // skip if tab not found
+
+          const controls = tab.querySelectorAll("input, select, textarea, button");
+          controls.forEach((el) => el.setAttribute("disabled", "disabled"));
+        });
+      });
+    </script>
   </body>
 </html>

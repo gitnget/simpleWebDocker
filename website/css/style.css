@@ -279,6 +279,16 @@ body {
   height: 100vh;
   margin-top: 100px;
 }
+
+.center2page ul li {
+  margin-top: 10px;
+  text-indent: 0.4em;
+}
+
+.center2page ul {
+  text-align: left;
+}
+
 .center2page img {
   max-width: 600px;
   margin-bottom: 50px;
