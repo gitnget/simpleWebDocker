@@ -38,6 +38,7 @@
   function forceLogout() {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("role");
     localStorage.removeItem("lastActiveTime");
     // notify other tabs
     try {

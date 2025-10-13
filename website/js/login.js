@@ -2,15 +2,22 @@ async function login() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
   const msg = document.getElementById("msg");
+  const btn = document.querySelector("button[onclick='login()']");
+  const spinner = document.getElementById("spinner");
+
+  msg.innerText = "";
 
   if (!username || !password) {
     msg.innerText = "Please enter both username and password.";
     return;
   }
 
+  // show spinner and disable button
+  btn.disabled = true;
+  spinner.style.display = "inline-block";
+
   try {
     const res = await fetch("https://fastapi-service-101554626321.asia-southeast1.run.app/login", {
-      //const res = await fetch("http://localhost:911/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -23,15 +30,17 @@ async function login() {
       return;
     }
 
-    // After successful login
-    // store JWT or session token
+    // successful login
     localStorage.setItem("token", data.token);
-    localStorage.setItem("username", data.username); // store username too
-
-    // redirect to index.html
+    localStorage.setItem("username", data.username);
+    localStorage.setItem("role", data.role);
     window.location.href = "index.html";
   } catch (err) {
     msg.innerText = "Error connecting to server.";
     console.error(err);
+  } finally {
+    // always hide spinner and re-enable button
+    btn.disabled = false;
+    spinner.style.display = "none";
   }
 }

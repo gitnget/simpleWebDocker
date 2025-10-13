@@ -113,9 +113,10 @@ document.addEventListener("DOMContentLoaded", function () {
   /* Display username once header is present */
   function showUsername() {
     const username = localStorage.getItem("username");
+    const role = localStorage.getItem("role");
     if (username) {
       const userInfo = document.getElementById("user-info-name");
-      if (userInfo) userInfo.innerText = `Welcome, ${username}`;
+      if (userInfo) userInfo.innerText = `Welcome, ${username} (${role})`;
     }
   }
 
