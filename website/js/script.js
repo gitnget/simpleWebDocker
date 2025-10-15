@@ -114,9 +114,15 @@ document.addEventListener("DOMContentLoaded", function () {
   function showUsername() {
     const username = localStorage.getItem("username");
     const role = localStorage.getItem("role");
+
     if (username) {
       const userInfo = document.getElementById("user-info-name");
-      if (userInfo) userInfo.innerText = `Welcome, ${username} (${role})`;
+      if (userInfo) userInfo.innerHTML = `Welcome, ${username} <br /> [${role}]`;
+
+      console.log(role);
+
+      const navbar = document.querySelector(".navbar");
+      navbar.classList.add(role);
     }
   }
 

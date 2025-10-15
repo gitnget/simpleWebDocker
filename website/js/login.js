@@ -2,22 +2,19 @@ async function login() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
   const msg = document.getElementById("msg");
-  const btn = document.querySelector("button[onclick='login()']");
-  const spinner = document.getElementById("spinner");
-
-  msg.innerText = "";
+  const btn = document.getElementById("loginBtn");
 
   if (!username || !password) {
     msg.innerText = "Please enter both username and password.";
     return;
   }
 
-  // show spinner and disable button
-  btn.disabled = true;
-  spinner.style.display = "inline-block";
-
   try {
+    btn.disabled = true;
+    btn.innerText = "Logging in...";
+
     const res = await fetch("https://fastapi-service-101554626321.asia-southeast1.run.app/login", {
+      //const res = await fetch("http://localhost:911/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -27,20 +24,27 @@ async function login() {
 
     if (!res.ok || !data.success) {
       msg.innerText = data.message || "Login failed.";
+      // After it's done
+      btn.disabled = false;
+      btn.innerText = "Login";
+
       return;
     }
 
-    // successful login
+    // After successful login
+    // store JWT or session token
     localStorage.setItem("token", data.token);
-    localStorage.setItem("username", data.username);
-    localStorage.setItem("role", data.role);
+    localStorage.setItem("username", data.username); // store username too
+    localStorage.setItem("role", data.role); // store username too
+
+    // redirect to index.html
     window.location.href = "index.html";
   } catch (err) {
     msg.innerText = "Error connecting to server.";
-    console.error(err);
-  } finally {
-    // always hide spinner and re-enable button
+    // After it's done
     btn.disabled = false;
-    spinner.style.display = "none";
+    btn.innerText = "Login";
+
+    console.error(err);
   }
 }

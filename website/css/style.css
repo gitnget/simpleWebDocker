@@ -25,6 +25,25 @@ body {
   padding: 0 40px;
   height: 60px;
   overflow: visible; /* allow dropdowns to escape */
+  border-bottom: 3px solid transparent; /* default hidden */
+  transition: border-color 0.3s ease;
+}
+
+/* Role-specific colors */
+.navbar.Administrator {
+  border-bottom-color: gold;
+}
+
+.navbar.SuperUser {
+  border-bottom-color: #32cd32; /* bright green */
+}
+
+.navbar.Developer {
+  border-bottom-color: #000000; /* black */
+}
+
+.navbar.Guest {
+  border-bottom-color: #6c48fd; /* blue */
 }
 
 .logo a {
