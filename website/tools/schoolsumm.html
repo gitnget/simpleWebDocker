@@ -23,9 +23,9 @@
       <!-- Content Wrapper -->
       <div id="content" style="display: none">
         <!-- Table Section -->
-        <div class="table-responsive mb-4">
+        <div class="table-responsive mb-4 w-75 mx-auto">
           <table class="table table-sm table-striped table-bordered text-center" id="summary-table">
-            <thead class="table-dark">
+            <thead class="table-info">
               <tr>
                 <th>Month</th>
                 <th>Student Count</th>
@@ -49,6 +49,15 @@
       </div>
 
       <p>&nbsp;</p>
+
+      <!-- Chart Section -->
+      <div class="card p-3 mx-auto" style="max-width: 800px">
+        <div style="position: relative; height: 300px">
+          <canvas id="yearlytrendchart"></canvas>
+        </div>
+      </div>
+
+      <p>&nbsp;</p>
       <p>&nbsp;</p>
     </main>
 
@@ -60,5 +69,6 @@
 
     <script src="/js/schoolsumm.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/schoolyearlytrend.js"></script>
   </body>
 </html>
